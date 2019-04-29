@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a1fbd13-0efe-4801-b690-e2c7098ade56" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/FraudBillBoardsDetection.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FraudBillBoardsDetectionApp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FraudBillBoardsDetectionApp/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FraudBillBoardsDetectionApp/start_flask_server.py" afterDir="false" />
-    </list>
+    <list default="true" id="1a1fbd13-0efe-4801-b690-e2c7098ade56" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +14,7 @@
         <entry file="file://$PROJECT_DIR$/FraudBillBoardsDetectionApp/start_flask_server.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="46" lean-forward="true" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -140,7 +130,7 @@
     <entry file="file://$PROJECT_DIR$/FraudBillBoardsDetectionApp/start_flask_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="46" lean-forward="true" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
         </state>
       </provider>
     </entry>
