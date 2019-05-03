@@ -1,11 +1,7 @@
-from flask import Flask
+from FraudBillBoardsDetectionApp import fraudBillBoardsDetectionApp
+from FraudBillBoardsDetectionApp import routes
 
 
-fraudBillBoardsDetectionApp = Flask(__name__)
-
-
-if __name__ == __main__:
+if __name__ == '__main__':
     fraudBillBoardsDetectionApp.run(debug=1)
 
-
-from FraudBillBoardsDetectionApp import routes
