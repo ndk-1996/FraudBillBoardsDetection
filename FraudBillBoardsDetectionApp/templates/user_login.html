@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>LoginPage</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
+    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+</ul>
+<br><br>
+<hr>
+<form method="post", action="">
+    {{ form.hidden_tag() }}
+    <p>
+        <b>{{ form.userName.label }}</b><br>
+        {{ form.userName() }}
+    </p>
+    <p>
+        <b>{{ form.passWord.label }}</b><br>
+        {{ form.passWord() }}
+    </p>
+    <p>
+        {{ form.rememberMe() }}
+        {{ form.rememberMe.label }}
+    </p>
+    <br><br>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+</body>
+</html>
