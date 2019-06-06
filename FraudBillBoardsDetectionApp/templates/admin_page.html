@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>LoginPage</title>
+    {% endif %}
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('logout_admin', user_id=username) }}">Admin Logout</a></li>
+    <li><a href = "{{ url_for('login_user') }}">User</a></li>
+</ul>
+<br><br>
+<hr>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>LoginPage</title>
+    <title>Register</title>
     {% endif %}
 </head>
 <body>
@@ -21,20 +21,37 @@
 <form method="post", action="">
     {{ form.hidden_tag() }}
     <p>
-        <b>{{ form.username.label }}</b><br>
-        {{ form.username() }}
+        <b>{{ form.email_id.label }}</b><br>
+        {{ form.email_id() }}
+    </p>
+    <p>
+        <b>{{ form.organisation_name.label }}</b><br>
+        {{ form.organisation_name() }}
+    </p>    
+    <p>
+        <b>{{ form.address.label }}</b><br>
+        {{ form.address() }}
+    </p>
+    <p>
+        <b>{{ form.contact_number.label }}</b><br>
+        {{ form.contact_number() }}<br>
+        {% for validation_error in form.contact_number.errors %}
+        [ {{ validation_error }} ]
+        {% endfor %}
     </p>
     <p>
         <b>{{ form.password.label }}</b><br>
         {{ form.password() }}
     </p>
-    <p>
-        {{ form.remember_me() }}
-        {{ form.remember_me.label }}
-    </p>
     <br><br>
     <p>
         {{ form.submit() }}
+    </p>
+    <br><br>
+    <p>
+        {% for validation_error in form.email_id.errors %}
+        [ {{ validation_error }} ]
+        {% endfor %}
     </p>
 </form>
 </body>

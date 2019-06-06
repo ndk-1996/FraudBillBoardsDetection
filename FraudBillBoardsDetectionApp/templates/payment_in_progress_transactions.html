@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>PaymentInProgressTransactions</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
+    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+</ul>
+<br><br>
+<hr>
+{% for row in transactions_list %}
+<a href = "{{ url_for('payment_page', user_id=user_id, transaction_id=row[1], billboard_id=row[6] }}"><p>transaction_id : {{ row[0] }}</p></a>
+<p>transaction_date : {{ row[1] }}</p>
+<p>email_id : {{ row[2] }}</p>
+<p>booking_start_date : {{ row[3] }}</p>
+<p>booking_end_date : {{ row[4] }}</p>
+<p>status : {{ row[5] }}</p>
+<br>
+<p>billboard_id : {{ row[6] }}</p>
+<p>area : {{ row[7] }}</p>
+<p>billboard_size : {{ row[8] }}</p>
+<p>cost_per_day : {{ row[9] }}</p>
+<p>address : {{ row[10] }}</p>
+<br><br>
+<hr>
+{% endfor %}
+</body>
+</html>

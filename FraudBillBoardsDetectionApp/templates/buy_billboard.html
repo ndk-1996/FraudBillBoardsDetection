@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>BuyBillboard</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
+    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+</ul>
+<br><br>
+<hr>
+<form method="post", action="">
+    {{ form.hidden_tag() }}
+    <p>
+        <b>{{ form.billboard_id.label }}</b><br>
+        {{ form.billboard_id() }}
+    </p>
+    <p>
+        <b>{{ form.start_date.label }}</b><br>
+        {{ form.start_date() }}
+    </p>
+    <p>
+        <b>{{ form.end_date.label }}</b><br>
+        {{ form.end_date() }}
+    </p>
+    <br><br>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+<br><br>
+{% for month in range(12) %}
+<p>
+{{ months[month] }}
+</p>
+<table>
+    <tr>
+        {% for day in week %}
+        <th>{{ day }}</th>
+        {% endfor %}
+    </tr>
+    {% for weeks_list in calender_view[month] %}
+        {% for weeks in weeks_list %}
+        <tr>
+            {% for curr_day in weeks %}
+            {% if curr_day[0] == -1 %}
+            <td> </td>
+            {% else %}
+            {% if curr_day[1] == 0 %}
+            <td><span style="color:green"><b>{{ curr_day[0] }}</b></span></td>
+            {% else %}
+            <td><span style="color:red"><b>{{ curr_day[0] }}</b></span></td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+<hr>
+{% endfor %}
+</body>
+</html>

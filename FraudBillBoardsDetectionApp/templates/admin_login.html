@@ -5,24 +5,37 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>HomePage</title>
+    <title>LoginPage</title>
     {% endif %}
 </head>
 <body>
 <ul>
-    {% if user_id is None %}
     <li><a href = "{{ url_for('home_page') }}">Home</a></li>
-    {% else %}
-    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
-    {% endif %}
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
     <li><a href = "{{ url_for('register') }}">Register with us</a></li>
-    {% if user_id is None %}
     <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
-    {% else %}
-    <li><a href = "{{ url_for('logout_user') }}">User Logout</a></li>
-    {% endif %}
     <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
 </ul>
+<br><br>
+<hr>
+<form method="post", action="">
+    {{ form.hidden_tag() }}
+    <p>
+        <b>{{ form.admin_username.label }}</b><br>
+        {{ form.admin_username() }}
+    </p>
+    <p>
+        <b>{{ form.admin_password.label }}</b><br>
+        {{ form.admin_password() }}
+    </p>
+    <p>
+        {{ form.remember_me() }}
+        {{ form.remember_me.label }}
+    </p>
+    <br><br>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
 </body>
 </html>

@@ -5,32 +5,24 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>LoginPage</title>
+    <title>Register</title>
     {% endif %}
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
+    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
     <li><a href = "{{ url_for('register') }}">Register with us</a></li>
-    <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
+    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
 </ul>
 <br><br>
 <hr>
 <form method="post", action="">
     {{ form.hidden_tag() }}
     <p>
-        <b>{{ form.username.label }}</b><br>
-        {{ form.username() }}
-    </p>
-    <p>
-        <b>{{ form.password.label }}</b><br>
-        {{ form.password() }}
-    </p>
-    <p>
-        {{ form.remember_me() }}
-        {{ form.remember_me.label }}
+        <b>{{ form.area.label }}</b><br>
+        {{ form.area() }}
     </p>
     <br><br>
     <p>

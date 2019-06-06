@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>LoginPage</title>
+    {% endif %}
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('home_page', user_id=username) }}">Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('logout_user', user_id=username) }}">User Logout</a></li>
+    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+</ul>
+<br><br>
+<hr>
+<p>
+    <a href = "{{ url_for('user_transactions', user_id=username) }}">Previous Transactions</a>
+</p>
+<p>
+    <a href = "{{ url_for('buy_billboard', user_id=username) }}">Buy BillBoard</a>
+</p>
+<p>
+    <a href = "{{ url_for('payment_in_progress_transactions', user_id=username) }}">Payment in progress Transactions</a>
+</p>
+</body>
+</html>
