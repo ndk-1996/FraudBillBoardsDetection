@@ -5,28 +5,43 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>Register</title>
+    <title>SearchBillboard</title>
     {% endif %}
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
+    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
+    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
     <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
 </ul>
 <br><br>
 <hr>
 <form method="post", action="">
     {{ form.hidden_tag() }}
     <p>
+        Select the area of the billboard you want :
+    </p>
+    <hr>
+    <p>
         <b>{{ form.area.label }}</b><br>
-        {{ form.area() }}
+        {{ form.area(list='region_datalist') }}
+        <datalist id="region_datalist">
+            {% for area in regions_list %}
+            <option value="{{ area[0] }}">
+            {% endfor %}
+        </datalist>
     </p>
     <br><br>
     <p>
         {{ form.submit() }}
+    </p>
+    <br>
+    <p>
+        {% for validation_error in form.submit.errors %}
+        <span style="color:red">[{{ validation_error }}]</span>
+        {% endfor %}
     </p>
 </form>
 </body>

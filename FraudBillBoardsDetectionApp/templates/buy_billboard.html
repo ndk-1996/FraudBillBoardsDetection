@@ -10,27 +10,32 @@
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
+    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
+    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
     <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
 </ul>
 <br><br>
 <hr>
 <form method="post", action="">
     {{ form.hidden_tag() }}
-    <p>
-        <b>{{ form.billboard_id.label }}</b><br>
-        {{ form.billboard_id() }}
-    </p>
+    <p>Please specify the start date and end date for the selected billboard : </p>
+    <br><br>
+    <hr>
     <p>
         <b>{{ form.start_date.label }}</b><br>
-        {{ form.start_date() }}
+        {{ form.start_date() }}<br>
+        {% for validation_error in form.start_date.errors %}
+        <span style="color:red">[ {{ validation_error }} ]</span>
+        {% endfor %}
     </p>
     <p>
         <b>{{ form.end_date.label }}</b><br>
-        {{ form.end_date() }}
+        {{ form.end_date() }}<br>
+        {% for validation_error in form.end_date.errors %}
+        <span style="color:red">[ {{ validation_error }} ]</span>
+        {% endfor %}
     </p>
     <br><br>
     <p>
@@ -38,6 +43,8 @@
     </p>
 </form>
 <br><br>
+<p><b><h2>YEAR {{ current_year }}</h2></b></p>
+<br>
 {% for month in range(12) %}
 <p>
 {{ months[month] }}
@@ -48,21 +55,24 @@
         <th>{{ day }}</th>
         {% endfor %}
     </tr>
-    {% for weeks_list in calender_view[month] %}
-        {% for weeks in weeks_list %}
+    {% for weeks in calender_view[month] %}
         <tr>
             {% for curr_day in weeks %}
+
             {% if curr_day[0] == -1 %}
             <td> </td>
-            {% else %}
-            {% if curr_day[1] == 0 %}
+            {% endif %}
+
+            {% if curr_day[0] != -1 and curr_day[1] == 0 %}
             <td><span style="color:green"><b>{{ curr_day[0] }}</b></span></td>
-            {% else %}
+            {% endif %}
+
+            {% if curr_day[0] != -1 and curr_day[1] == 1 %}
             <td><span style="color:red"><b>{{ curr_day[0] }}</b></span></td>
             {% endif %}
+
             {% endfor %}
         </tr>
-        {% endfor %}
     {% endfor %}
 </table>
 <hr>

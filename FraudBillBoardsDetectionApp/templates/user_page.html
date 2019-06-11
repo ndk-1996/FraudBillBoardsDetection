@@ -5,17 +5,16 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>LoginPage</title>
+    <title>UserPage</title>
     {% endif %}
-    <title>Title</title>
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page', user_id=username) }}">Home</a></li>
+    <li><a href = "{{ url_for('user_home_page', user_id=username) }}">User Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('register', user_id=username) }}">Register with us</a></li>
+    <li><a href = "{{ url_for('user_page', username=username) }}">User Page</a></li>
     <li><a href = "{{ url_for('logout_user', user_id=username) }}">User Logout</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
 </ul>
 <br><br>
 <hr>
@@ -23,7 +22,7 @@
     <a href = "{{ url_for('user_transactions', user_id=username) }}">Previous Transactions</a>
 </p>
 <p>
-    <a href = "{{ url_for('buy_billboard', user_id=username) }}">Buy BillBoard</a>
+    <a href = "{{ url_for('search_billboards', user_id=username) }}">Buy BillBoard</a>
 </p>
 <p>
     <a href = "{{ url_for('payment_in_progress_transactions', user_id=username) }}">Payment in progress Transactions</a>

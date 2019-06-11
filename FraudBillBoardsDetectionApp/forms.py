@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, SubmitField, DateField, IntegerField, FieldList
+from wtforms import StringField, BooleanField, PasswordField, SubmitField, DateField, IntegerField, FileField
 from wtforms.validators import DataRequired
 
 
@@ -39,5 +39,21 @@ class BillboardSearch(FlaskForm):
 
 class PaymentForm(FlaskForm):
     submit = SubmitField("Pay")
+
+
+class AddBillboardForm(FlaskForm):
+    area = StringField("Billboard_Area", validators=[DataRequired()])
+    billboard_dimensions = StringField("Billboard_Dimensions", validators=[DataRequired()])
+    cost_per_day = IntegerField("Cost_per_Day", validators=[DataRequired()])
+    address = StringField("Address", validators=[DataRequired()])
+    submit = SubmitField("Add billboard")
+
+
+class ApproveUserTransactionForm(FlaskForm):
+    submit = SubmitField("Approve")
+
+
+class UploadImageForm(FlaskForm):
+    submit = SubmitField("Upload image")
 
 

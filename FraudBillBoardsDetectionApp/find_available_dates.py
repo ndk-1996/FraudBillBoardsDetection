@@ -1,21 +1,22 @@
 from FraudBillBoardsDetectionApp.constants import application_constants
 
+
 class FindAvailableDates(object):
 
     def __init__(self):
         self.days_in_each_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         self.calender = dict()
-        self.calender_view = [[[]]]
+        self.calender_view = [[], [], [], [], [], [], [], [], [], [], [], []]
         for i in range(len(self.days_in_each_month)):
             self.calender[i + 1] = list()
             for j in range(self.days_in_each_month[i]):
-                day = (j + 1, 0)
+                day = [j + 1, 0]
                 self.calender[i + 1].append(day)
 
     def add_blocked_days_to_calender(self, blocked_days, separator):
         for period in blocked_days:
-            start_date = period[0]
-            end_date = period[1]
+            start_date = str(period[0])
+            end_date = str(period[1])
             start_date_month = self.get_month_from_date(start_date, separator)
             end_date_month = self.get_month_from_date(end_date, separator)
             start_date_day = self.get_day_from_date(start_date, separator)
@@ -24,8 +25,6 @@ class FindAvailableDates(object):
             if start_date_month == end_date_month:
                 for days in range(start_date_day - 1, end_date_day):
                     self.calender[start_date_month][days][1] = 1
-
-                return self.calender
 
             if start_date_month < end_date_month:
                 for days in range(start_date_day - 1, self.days_in_each_month[start_date_month - 1]):
@@ -42,7 +41,7 @@ class FindAvailableDates(object):
                         for days in range(self.days_in_each_month[months]):
                             self.calender[months + 1][days][1] = 1
 
-                return self.calender
+        return self.calender
 
     def create_calender_view(self):
         first_day = application_constants['first_day_of_the_current_year']
@@ -70,11 +69,10 @@ class FindAvailableDates(object):
                 first_day = first_day + 1
                 j = j + 1
 
-            for i in range(first_day + 1, 8):
+            for i in range(first_day, 8):
                 days_per_week.append((-1, 0))
 
             self.calender_view[curr_month].append(days_per_week)
-            first_day = first_day + 1
 
         return self.calender_view
 
@@ -99,6 +97,8 @@ class FindAvailableDates(object):
         return day
 
     def find_no_of_days(self, start_date, end_date, separator):
+        start_date = str(start_date)
+        end_date = str(end_date)
         start_date_month = self.get_month_from_date(start_date, separator)
         end_date_month = self.get_month_from_date(end_date, separator)
         start_date_day = self.get_day_from_date(start_date, separator)
@@ -109,7 +109,7 @@ class FindAvailableDates(object):
             return no_of_days
 
         if start_date_month < end_date_month:
-            no_of_days = self.days_in_each_month[start_date_month - 1] - start_date_day
+            no_of_days = self.days_in_each_month[start_date_month - 1] - start_date_day + 1
             no_of_days = no_of_days + end_date_day
 
             start_date_month = start_date_month + 1
@@ -122,10 +122,11 @@ class FindAvailableDates(object):
             return no_of_days
 
 
-if __name__ == '__main__':
-    datesObj = FindAvailableDates()
-
-
-print(datesObj.days_in_each_month)
-print(datesObj.calender)
+#if __name__ == '__main__':
+    # find_available_dates = FindAvailableDates()
+    # print(find_available_dates.find_no_of_days('2019-02-15', '2019-04-01', '-'))
+    # print(find_available_dates.add_blocked_days_to_calender([], '-'))
+    # print(find_available_dates.calender[4])
+    # print(find_available_dates.create_calender_view())
+    # print(find_available_dates.calender_view[3])
 

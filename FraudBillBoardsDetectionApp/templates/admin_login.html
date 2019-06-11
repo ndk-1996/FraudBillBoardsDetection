@@ -5,16 +5,14 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>LoginPage</title>
+    <title>AdminLoginPage</title>
     {% endif %}
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
+    <li><a href = "{{ url_for('admin_home_page') }}">Admin Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
-    <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
 </ul>
 <br><br>
 <hr>
@@ -35,6 +33,11 @@
     <br><br>
     <p>
         {{ form.submit() }}
+    </p>
+    <p>
+        {% for validation_error in form.submit.errors %}
+        <span style="color:red">[{{ validation_error }}]</span>
+        {% endfor %}
     </p>
 </form>
 </body>

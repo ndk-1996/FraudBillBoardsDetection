@@ -9,20 +9,7 @@
     {% endif %}
 </head>
 <body>
-<ul>
-    {% if user_id is None %}
-    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
-    {% else %}
-    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
-    {% endif %}
-    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
-    {% if user_id is None %}
-    <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
-    {% else %}
-    <li><a href = "{{ url_for('logout_user') }}">User Logout</a></li>
-    {% endif %}
-    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
-</ul>
+<li><a href = "{{ url_for('user_home_page') }}">User Home</a></li>
+<li><a href = "{{ url_for('admin_home_page') }}">Admin Home</a></li>
 </body>
 </html>

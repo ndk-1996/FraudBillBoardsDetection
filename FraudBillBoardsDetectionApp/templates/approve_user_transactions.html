@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>ApproveUserTransaction</title>
+    {% endif %}
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+</ul>
+<br><br>
+<hr>
+{% for row in transaction %}
+<p>transaction_id : {{ row[0] }}</p>
+<p>transaction_date : {{ row[1] }}</p>
+<p>email_id : {{ row[2] }}</p>
+<p>booking_start_date : {{ row[3] }}</p>
+<p>booking_end_date : {{ row[4] }}</p>
+<p>application_status : {{ row[5] }}</p>
+<p>payment_status : {{ row[6] }}</p>
+<p>billboard_id : {{ row[7] }}</p>
+<br><br>
+<hr>
+{% endfor %}
+<form method="post", action="">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+</body>
+</html>

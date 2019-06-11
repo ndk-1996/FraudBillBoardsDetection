@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>UploadImage</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+</ul>
+<br><br>
+<hr>
+<p><h2>UPLOAD IMAGE FOR OCR JOB : </h2></p>
+<form method="post", action="", enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        <input type = "file" name = "file"/><br><br>
+          {% if err_msg %}
+          <span style="color: red;">[{{ err_msg }}]</span>
+          {% endif %}
+    </p>
+    <br><br>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+</body>
+</html>

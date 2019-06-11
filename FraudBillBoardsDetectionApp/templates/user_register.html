@@ -5,16 +5,35 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>Register</title>
+    <title>RegisterPage</title>
     {% endif %}
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
+    {% if user_id is none %}
+    <li><a href = "{{ url_for('user_home_page') }}">User Home</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
+    {% endif %}
+
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+
+    {% if user_id is none %}
     <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
+    {% endif %}
+
+    {% if user_id is not none %}
+    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
+    {% endif %}
+
+    {% if user_id is none %}
     <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
+    {% endif %}
+
 </ul>
 <br><br>
 <hr>
@@ -36,7 +55,7 @@
         <b>{{ form.contact_number.label }}</b><br>
         {{ form.contact_number() }}<br>
         {% for validation_error in form.contact_number.errors %}
-        [ {{ validation_error }} ]
+        <span style="color:red">[ {{ validation_error }} ]</span>
         {% endfor %}
     </p>
     <p>
@@ -50,7 +69,7 @@
     <br><br>
     <p>
         {% for validation_error in form.email_id.errors %}
-        [ {{ validation_error }} ]
+        <span style="color:red">[ {{ validation_error }} ]</span>
         {% endfor %}
     </p>
 </form>

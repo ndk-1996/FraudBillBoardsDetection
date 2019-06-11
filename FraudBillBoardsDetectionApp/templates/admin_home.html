@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>AdminHomePage</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    {% if admin_id is none %}
+    <li><a href = "{{ url_for('admin_home_page') }}">Admin Home</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Home</a></li>
+    {% endif %}
+
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+
+    {% if admin_id is not none %}
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    {% endif %}
+
+    {% if admin_id is none %}
+    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+    {% endif %}
+</ul>
+</body>
+</html>

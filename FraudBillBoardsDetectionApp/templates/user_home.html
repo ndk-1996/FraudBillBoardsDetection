@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>UserHomePage</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    {% if user_id is none %}
+    <li><a href = "{{ url_for('user_home_page') }}">User Home</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
+    {% endif %}
+
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+
+    {% if user_id is none %}
+    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
+    {% endif %}
+
+    {% if user_id is not none %}
+    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
+    {% endif %}
+
+    {% if user_id is none %}
+    <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
+    {% else %}
+    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
+    {% endif %}
+</ul>
+</body>
+</html>

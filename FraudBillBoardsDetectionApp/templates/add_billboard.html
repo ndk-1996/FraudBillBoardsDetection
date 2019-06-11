@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>AddNewBillboardPage</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+</ul>
+<br><br>
+<hr>
+<form method="post", action="">
+    {{ form.hidden_tag() }}
+    <p>
+        <b>{{ form.area.label }}</b><br>
+        {{ form.area(list='region_datalist') }}
+        <datalist id="region_datalist">
+            {% for area in regions_list %}
+            <option value="{{ area[0] }}">
+            {% endfor %}
+        </datalist>
+    </p>
+    <p>
+        <b>{{ form.billboard_dimensions.label }}</b><br>
+        {{ form.billboard_dimensions() }}
+    </p>
+    <p>
+        <b>{{ form.cost_per_day.label }}</b><br>
+        {{ form.cost_per_day() }}<br>
+        {% for validation_error in form.cost_per_day.errors %}
+        <span style="color:red">[ {{ validation_error }} ]</span>
+        {% endfor %}
+    </p>
+    <p>
+        <b>{{ form.address.label }}</b><br>
+        {{ form.address() }}
+    </p>
+    <br><br>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+</body>
+</html>

@@ -5,25 +5,25 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>Register</title>
+    <title>SelectBillboard</title>
     {% endif %}
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page', user_id=user_id) }}">Home</a></li>
+    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
+    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
     <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
 </ul>
 <br><br>
 <hr>
 {% for row in billboards_list %}
 <a href = "{{ url_for('buy_billboard', user_id=user_id, area=area, billboard_id=row[0]) }}"><p>billboard_id : {{ row[0] }}</p></a>
 <p>area : {{ row[1] }}</p>
-<p>billboard_size : {{ row[2] }}</p>
-<p>cost_per_day : {{ row[3] }}</p>
-<p>address : {{ row[4] }}</p>
+<p>cost_per_day : {{ row[2] }}</p>
+<p>address : {{ row[3] }}</p>
+<p>billboard_dimensions : {{ row[4] }}</p>
 <br><br>
 <hr>
 {% endfor %}

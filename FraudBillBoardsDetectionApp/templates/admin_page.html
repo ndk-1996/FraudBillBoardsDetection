@@ -11,14 +11,27 @@
 </head>
 <body>
 <ul>
-    <li><a href = "{{ url_for('home_page') }}">Home</a></li>
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin Home</a></li>
     <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
-    <li><a href = "{{ url_for('logout_admin', user_id=username) }}">Admin Logout</a></li>
-    <li><a href = "{{ url_for('login_user') }}">User</a></li>
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
 </ul>
 <br><br>
 <hr>
-
+<p>
+    <a href = "{{ url_for('add_billboard', admin_id=admin_id) }}">Add billboard</a>
+</p>
+<p>
+    <a href = "{{ url_for('unapproved_user_transactions', admin_id=admin_id) }}">Unapproved user transactions</a>
+</p>
+<p>
+    <a href = "{{ url_for('approved_user_transactions', admin_id=admin_id) }}">Approved user transactions</a>
+</p>
+<p>
+    <a href = "{{ url_for('search_billboards_for_ocr', admin_id=admin_id) }}">Search billboard for ocr</a>
+</p>
+<p>
+    <a href = "{{ url_for('all_notifications', admin_id=admin_id) }}">All OCR notifications</a>
+</p>
 </body>
 </html>

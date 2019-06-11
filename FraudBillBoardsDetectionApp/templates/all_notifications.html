@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>ApproveUserTransaction</title>
+    {% endif %}
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+</ul>
+<br><br>
+<hr>
+{% for row in notifications_list %}
+<p>notification_id : {{ row[0] }}</p>
+<p>img_id : {{ row[1] }}</p>
+<p>content : {{ row[2] }}</p>
+<p>ocr_job_finished_or_not : {{ row[3] }}</p>
+<p>processed_date : {{ row[4] }}</p>
+<p>ocred_text : {{ row[5] }}</p>
+<p>expected_organization_name : {{ row[6] }}</p>
+<hr>
+{% endfor %}
+</body>
+</html>

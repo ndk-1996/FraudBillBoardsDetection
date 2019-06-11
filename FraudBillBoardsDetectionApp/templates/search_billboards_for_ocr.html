@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>SearchBillboard</title>
+    {% endif %}
+</head>
+<body>
+<ul>
+    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin Home</a></li>
+    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+</ul>
+<br><br>
+<hr>
+<form method="post", action="">
+    {{ form.hidden_tag() }}
+    <p>
+        Select the area of the billboard to run the ocr job :
+    </p>
+    <hr>
+    <p>
+        <b>{{ form.area.label }}</b><br>
+        {{ form.area(list='region_datalist') }}
+        <datalist id="region_datalist">
+            {% for area in regions_list %}
+            <option value="{{ area[0] }}">
+            {% endfor %}
+        </datalist>
+    </p>
+    <br><br>
+    <p>
+        {{ form.submit() }}
+    </p>
+    <br>
+    <p>
+        {% for validation_error in form.submit.errors %}
+        <span style="color:red">[{{ validation_error }}]</span>
+        {% endfor %}
+    </p>
+</form>
+</body>
+</html>
