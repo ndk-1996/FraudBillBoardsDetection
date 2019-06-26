@@ -16,7 +16,7 @@ def decode_predictions(scores, geometry, args):
 	(numRows, numCols) = scores.shape[2:4]
 	rects = []
 	confidences = []
-	
+
 	# loop over the number of rows
 	for y in range(0, numRows):
 		# extract the scores (probabilities), followed by the

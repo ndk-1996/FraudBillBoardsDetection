@@ -11,5 +11,6 @@ application_constants['current_year'] = 2019
 application_constants['first_day_of_the_current_year'] = 2
 application_constants['upload_folder'] = 'E:/pycharm/pycharm_projects/FraudBillBoardsDetection/FraudBillBoardsDetectionApp/static/'
 application_constants['east_text_detector_location'] = 'E:/pycharm/pycharm_projects/FraudBillBoardsDetection/text_detection_and_recognition/frozen_east_text_detection.pb'
-
+application_constants['test_images_location'] = 'E:/text_detection_and_recognition/ch4_test_images/'
+application_constants['labelled_data_for_images_location'] = 'E:/text_detection_and_recognition/Challenge4_Test_Task1_GT/'
 

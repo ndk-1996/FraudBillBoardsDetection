@@ -7,26 +7,27 @@
     {% else %}
     <title>AdminHomePage</title>
     {% endif %}
+    <link rel = 'stylesheet' href = "{{ url_for('static', filename = 'w3_css_file.css') }}">
 </head>
-<body>
-<ul>
+<body background = "{{ url_for('static', filename = 'background_image1.jpg') }}">
+<div class = "w3-bar w3-red w3-card w3-padding-16">
     {% if admin_id is none %}
-    <li><a href = "{{ url_for('admin_home_page') }}">Admin Home</a></li>
+    <a href = "{{ url_for('admin_home_page') }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Home</a>
     {% else %}
-    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Home</a></li>
+    <a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Home</a>
     {% endif %}
 
-    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <a href = "{{ url_for('about_us') }}" class = "w3-button w3-hover-green w3-round-xxlarge">About us</a>
 
     {% if admin_id is not none %}
-    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
+    <a href = "{{ url_for('admin_page', admin_id=admin_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Page</a>
     {% endif %}
 
     {% if admin_id is none %}
-    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
+    <a href = "{{ url_for('login_admin') }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Login</a>
     {% else %}
-    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
+    <a href = "{{ url_for('logout_admin', admin_id=admin_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Logout</a>
     {% endif %}
-</ul>
+</div>
 </body>
 </html>

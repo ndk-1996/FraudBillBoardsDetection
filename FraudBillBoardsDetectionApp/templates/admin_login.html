@@ -7,32 +7,33 @@
     {% else %}
     <title>AdminLoginPage</title>
     {% endif %}
+    <link rel = 'stylesheet' href = "{{ url_for('static', filename = 'w3_css_file.css') }}">
 </head>
-<body>
-<ul>
-    <li><a href = "{{ url_for('admin_home_page') }}">Admin Home</a></li>
-    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('login_admin') }}">Admin Login</a></li>
-</ul>
+<body background = "{{ url_for('static', filename = 'background_image1.jpg') }}">
+<div class = "w3-bar w3-red w3-card w3-padding-16">
+    <a href = "{{ url_for('admin_home_page') }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Home</a>
+    <a href = "{{ url_for('about_us') }}" class = "w3-button w3-hover-green w3-round-xxlarge">About us</a>
+    <a href = "{{ url_for('login_admin') }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Login</a>
+</div>
 <br><br>
 <hr>
 <form method="post", action="">
     {{ form.hidden_tag() }}
     <p>
-        <b>{{ form.admin_username.label }}</b><br>
-        {{ form.admin_username() }}
+        <b>{{ form.admin_username.label(class_ = 'w3-margin-left')}}</b><br>
+        {{ form.admin_username(class_ = 'w3-margin-left') }}
     </p>
     <p>
-        <b>{{ form.admin_password.label }}</b><br>
-        {{ form.admin_password() }}
+        <b>{{ form.admin_password.label(class_ = 'w3-margin-left') }}</b><br>
+        {{ form.admin_password(class_ = 'w3-margin-left') }}
     </p>
     <p>
-        {{ form.remember_me() }}
-        {{ form.remember_me.label }}
+        {{ form.remember_me(class_ = 'w3-margin-left') }}
+        {{ form.remember_me.label(class_ = 'w3-margin-left') }}
     </p>
     <br><br>
     <p>
-        {{ form.submit() }}
+        {{ form.submit(class_ = 'w3-button w3-hover-green w3-round-xxlarge') }}
     </p>
     <p>
         {% for validation_error in form.submit.errors %}

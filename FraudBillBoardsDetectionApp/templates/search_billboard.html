@@ -7,15 +7,16 @@
     {% else %}
     <title>SearchBillboard</title>
     {% endif %}
+    <link rel = 'stylesheet' href = "{{ url_for('static', filename = 'w3_css_file.css') }}">
 </head>
-<body>
-<ul>
-    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
-    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
-    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
-    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
-</ul>
+<body background = "{{ url_for('static', filename = 'background_image1.jpg') }}">
+<div class = "w3-bar w3-red w3-card w3-padding-16">
+    <a href = "{{ url_for('user_home_page', user_id=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Home</a>
+    <a href = "{{ url_for('about_us') }}" class = "w3-button w3-hover-green w3-round-xxlarge">About us</a>
+    <a href = "{{ url_for('register', user_id=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Register with us</a>
+    <a href = "{{ url_for('user_page', username=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Page</a>
+    <a href = "{{ url_for('logout_user', user_id=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Logout</a>
+</div>
 <br><br>
 <hr>
 <form method="post", action="">
@@ -25,8 +26,8 @@
     </p>
     <hr>
     <p>
-        <b>{{ form.area.label }}</b><br>
-        {{ form.area(list='region_datalist') }}
+        <b>{{ form.area.label(class_ = 'w3-margin-left') }}</b><br>
+        {{ form.area(list = 'region_datalist', class_ = 'w3-margin-left') }}
         <datalist id="region_datalist">
             {% for area in regions_list %}
             <option value="{{ area[0] }}">
@@ -35,7 +36,7 @@
     </p>
     <br><br>
     <p>
-        {{ form.submit() }}
+        {{ form.submit(class_ = 'w3-button w3-hover-green w3-round-xxlarge') }}
     </p>
     <br>
     <p>

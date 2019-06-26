@@ -7,32 +7,33 @@
     {% else %}
     <title>UserHomePage</title>
     {% endif %}
+    <link rel = 'stylesheet' href = "{{ url_for('static', filename = 'w3_css_file.css') }}">
 </head>
-<body>
-<ul>
+<body background = "{{ url_for('static', filename = 'background_image1.jpg') }}">
+<div class = "w3-bar w3-red w3-card w3-padding-16">
     {% if user_id is none %}
-    <li><a href = "{{ url_for('user_home_page') }}">User Home</a></li>
+    <a href = "{{ url_for('user_home_page') }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Home</a>
     {% else %}
-    <li><a href = "{{ url_for('user_home_page', user_id=user_id) }}">User Home</a></li>
+    <a href = "{{ url_for('user_home_page', user_id=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Home</a>
     {% endif %}
 
-    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
+    <a href = "{{ url_for('about_us') }}" class = "w3-button w3-hover-green w3-round-xxlarge">About us</a>
 
     {% if user_id is none %}
-    <li><a href = "{{ url_for('register') }}">Register with us</a></li>
+    <a href = "{{ url_for('register') }}" class = "w3-button w3-hover-green w3-round-xxlarge">Register with us</a>
     {% else %}
-    <li><a href = "{{ url_for('register', user_id=user_id) }}">Register with us</a></li>
+    <a href = "{{ url_for('register', user_id=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Register with us</a>
     {% endif %}
 
     {% if user_id is not none %}
-    <li><a href = "{{ url_for('user_page', username=user_id) }}">User Page</a></li>
+    <a href = "{{ url_for('user_page', username=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Page</a>
     {% endif %}
 
     {% if user_id is none %}
-    <li><a href = "{{ url_for('login_user') }}">User Login</a></li>
+    <a href = "{{ url_for('login_user') }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Login</a>
     {% else %}
-    <li><a href = "{{ url_for('logout_user', user_id=user_id) }}">User Logout</a></li>
+    <a href = "{{ url_for('logout_user', user_id=user_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">User Logout</a>
     {% endif %}
-</ul>
+</div>
 </body>
 </html>

@@ -7,15 +7,15 @@
     {% else %}
     <title>ApproveUserTransaction</title>
     {% endif %}
-    <title>Title</title>
+    <link rel = 'stylesheet' href = "{{ url_for('static', filename = 'w3_css_file.css') }}">
 </head>
-<body>
-<ul>
-    <li><a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}">Admin Home</a></li>
-    <li><a href = "{{ url_for('about_us') }}">About us</a></li>
-    <li><a href = "{{ url_for('admin_page', admin_id=admin_id) }}">Admin Page</a></li>
-    <li><a href = "{{ url_for('logout_admin', admin_id=admin_id) }}">Admin Logout</a></li>
-</ul>
+<body background = "{{ url_for('static', filename = 'background_image1.jpg') }}">
+<div class = "w3-bar w3-red w3-card w3-padding-16">
+    <a href = "{{ url_for('admin_home_page', admin_id=admin_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Home</a>
+    <a href = "{{ url_for('about_us') }}" class = "w3-button w3-hover-green w3-round-xxlarge">About us</a>
+    <a href = "{{ url_for('admin_page', admin_id=admin_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Page</a>
+    <a href = "{{ url_for('logout_admin', admin_id=admin_id) }}" class = "w3-button w3-hover-green w3-round-xxlarge">Admin Logout</a>
+</div>
 <br><br>
 <hr>
 {% for row in transaction %}

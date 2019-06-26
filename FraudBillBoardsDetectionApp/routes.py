@@ -12,6 +12,7 @@ from FraudBillBoardsDetectionApp.find_available_dates import FindAvailableDates
 from datetime import date
 from text_detection_and_recognition.text_recognition import start_ocr_job
 from FraudBillBoardsDetectionApp import string_matching_kmp
+import cv2
 
 
 @fraudBillBoardsDetectionApp.route("/home")
@@ -349,19 +350,28 @@ def upload_image_and_run_ocr(admin_id, billboard_id):
                                        billboard_id=billboard_id, form=form, err_msg=err_msg)
             f = request.files['file']
             print(f.filename)
+            filename_splitted = f.filename.split('.')
+            extension = filename_splitted[1]
             if f.filename == '':
                 err_msg = 'Please choose the image file'
                 return render_template("upload_image_and_run_ocr.html", title="UploadImage", admin_id=admin_id,
                                        billboard_id=billboard_id, form=form, err_msg=err_msg)
-            f.filename = 'image' + str(new_imd_id) + '.jpg'
+            f.filename = 'image' + str(new_imd_id) + '.' + extension
+            print(f.filename)
             f.save(application_constants['upload_folder'] + f.filename)
             args_for_ocr_job = dict()
             args_for_ocr_job["image"] = application_constants['upload_folder'] + f.filename
+            image = cv2.imread(args_for_ocr_job["image"])
+            (origH, origW) = image.shape[:2]
+            origH = (origH // 32) * 32
+            origW = (origW // 32) * 32
+
+            print(origW, origH)
             args_for_ocr_job["east"] = application_constants['east_text_detector_location']
-            args_for_ocr_job["min_confidence"] = 0.26
-            args_for_ocr_job["height"] = 320
-            args_for_ocr_job["width"] = 320
-            args_for_ocr_job["padding"] = 0.05
+            args_for_ocr_job["min_confidence"] = 0.3
+            args_for_ocr_job["height"] = origH
+            args_for_ocr_job["width"] = origW
+            args_for_ocr_job["padding"] = 0.04
             params_insert_image_query = (new_imd_id, today, application_constants['upload_folder'] + f.filename, billboard_id)
             image_dao.save_new_image(insert_image_query, params_insert_image_query)
             new_notification_id_query = '''select max(notification_id) from notifications'''
